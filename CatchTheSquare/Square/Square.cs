@@ -6,12 +6,14 @@ namespace CatchTheSquare
 {
     public class Square
     {
+        public static Vector2f DefaultSize = new Vector2f(100, 100);
+
         public bool IsActive = true;
 
-        private RectangleShape shape;
-        private float movementSpeed;
-        private Vector2f movementTarget;
-        private IntRect movementBounds;
+        protected RectangleShape shape;
+        protected float movementSpeed;
+        protected Vector2f movementTarget;
+        protected IntRect movementBounds;
 
         public Square(Vector2f position, float movementSpeed, IntRect movemetBounds) 
         {
@@ -43,6 +45,9 @@ namespace CatchTheSquare
 
             if (shape.Position == movementTarget)
             {
+                OnReachedTarget();
+
+
                 UpdateMovementTarget();
             }
 
@@ -56,7 +61,18 @@ namespace CatchTheSquare
         
         }
 
-        private void UpdateMovementTarget() 
+
+        public void CheckMousePosition(Vector2i mousePos) 
+        {
+            if (IsActive == false) return;
+
+            if (mousePos.X > shape.Position.X && mousePos.X < shape.Position.X + shape.Size.X 
+                && mousePos.Y > shape.Position.Y && mousePos.Y < shape.Position.Y + shape.Size.Y) OnClick();
+            
+        
+        }
+
+        protected void UpdateMovementTarget() 
         {
             Random rnd = new Random();
 
@@ -64,6 +80,9 @@ namespace CatchTheSquare
             movementTarget.Y = rnd.Next(movementBounds.Top, movementBounds.Top + movementBounds.Height);
         
         }
+
+        protected virtual void OnClick() { }
+        protected virtual void OnReachedTarget() { }
 
         
     }

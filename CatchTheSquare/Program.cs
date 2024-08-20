@@ -2,6 +2,7 @@
 using SFML.Graphics;
 using SFML.Window;
 using SFML.System;
+using System.Collections.Generic;
 
 
 namespace CatchTheSquare
@@ -16,14 +17,34 @@ namespace CatchTheSquare
 
             Square square = new Square(new Vector2f(100, 100), 10, new IntRect(0, 0, 800, 600));
 
+            List<Square> squares = new List<Square>();
+            squares.Add( new PlayerSquare(new Vector2f(100, 100), 10, new IntRect(0, 0, 800, 600)) );
+            squares.Add( new EnemySquare(new Vector2f(200, 100), 10, new IntRect(0, 0, 800, 600)) );
+
             while (win.IsOpen == true)
             {
                 win.Clear(new Color(230, 230, 230));
 
-                square.Move();
-                square.Draw(win);
+                
 
                 win.DispatchEvents();
+                if (Mouse.IsButtonPressed(Mouse.Button.Left) == true)
+                {
+                    for (int i = 0; i < squares.Count; i++)
+                    {
+                        squares[i].CheckMousePosition(Mouse.GetPosition(win));
+
+                    }
+
+                }
+
+
+
+                for (int i = 0; i < squares.Count; i++)
+                {
+                    squares[i].Move();
+                    squares[i].Draw(win);
+                }
 
                 win.Display();
             }

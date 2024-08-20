@@ -60,6 +60,8 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Square\EnemySquare.cs" />
+    <Compile Include="Square\PlayerSquare.cs" />
     <Compile Include="Square\Square.cs" />
   </ItemGroup>
   <ItemGroup>
