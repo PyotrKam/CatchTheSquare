@@ -74,10 +74,9 @@ namespace CatchTheSquare
 
         protected void UpdateMovementTarget() 
         {
-            Random rnd = new Random();
-
-            movementTarget.X = rnd.Next(movementBounds.Left, movementBounds.Left + movementBounds.Width);
-            movementTarget.Y = rnd.Next(movementBounds.Top, movementBounds.Top + movementBounds.Height);
+            
+            movementTarget.X = Program.Random.Next(movementBounds.Left, movementBounds.Left + movementBounds.Width);
+            movementTarget.Y = Program.Random.Next(movementBounds.Top, movementBounds.Top + movementBounds.Height);
         
         }
 

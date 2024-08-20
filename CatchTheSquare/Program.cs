@@ -9,6 +9,7 @@ namespace CatchTheSquare
 {
     class Program 
     {
+        public static Random Random = new Random();
         public static void Main(string[] args)
         {
             RenderWindow win = new RenderWindow(new VideoMode(800, 600), "Game");
