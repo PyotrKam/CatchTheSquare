@@ -12,9 +12,9 @@ namespace CatchTheSquare
     {
         
         private static Color Color = new Color(230, 50, 50);
-        private static float MaxMovementSpeed = 5;
-        private static float MovementStep = 0.1f;
-        private static float MaxSize = 200;
+        private static float MaxMovementSpeed = 3;
+        private static float MovementStep = 0.05f;
+        private static float MaxSize = 150;
         private static float SizeStep = 10;
 
         public EnemySquare(Vector2f position, float movementSpeed, IntRect movemetBounds) : base(position, movementSpeed, movemetBounds)
@@ -25,7 +25,7 @@ namespace CatchTheSquare
 
         protected override void OnClick()
         {
-           // To do
+            Game.IsLost = true;
         }
 
         protected override void OnReachedTarget()
