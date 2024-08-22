@@ -58,11 +58,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Game.cs" />
+    <Compile Include="Mathf.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Square\EnemySquare.cs" />
     <Compile Include="Square\PlayerSquare.cs" />
     <Compile Include="Square\Square.cs" />
+    <Compile Include="Square\SquareList.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
