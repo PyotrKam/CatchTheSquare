@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Game.cs" />
     <Compile Include="Mathf.cs" />
+    <Compile Include="Menu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Square\EnemySquare.cs" />

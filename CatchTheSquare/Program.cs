@@ -16,6 +16,17 @@ namespace CatchTheSquare
             win.Closed += Win_closed;
             win.SetFramerateLimit(60);
 
+            Menu menu = new Menu();
+
+            while (menu.menuFlag == true)
+            {
+                win.Clear(new Color(230, 230, 230));
+                menu.ShowMenu(win);
+                menu.ChooseMenu();
+                win.DispatchEvents();                
+                win.Display();
+            }
+
             Game game = new Game();
                         
             while (win.IsOpen == true)
