@@ -22,7 +22,9 @@ namespace CatchTheSquare
 
         private int MaxScores;
 
-        public Game() 
+        private int game;
+
+        public Game(int gamesettings) 
         {
             mainFont = new Font("comic.ttf");
             
@@ -41,18 +43,35 @@ namespace CatchTheSquare
             loseText.Position = new Vector2f(20, 290);
 
 
-            Reset();
+            Reset(gamesettings);
         }
 
-        private void Reset() 
+        private void Reset(int gamesettings) 
         {
             squares.Reset();
             Scores = 0;
             IsLost = false;
 
-            squares.SpawnPlayerSquare();
+            if (gamesettings == 1)
+            {
+                squares.SpawnPlayerSquare();
+                squares.SpawnPlayerSquare();
 
-            squares.SpawnEnemySquare();
+                squares.SpawnEnemySquare();
+                squares.SpawnEnemySquare();
+            }
+
+            if (gamesettings == 2)
+            {
+                squares.SpawnPlayerCircle();
+                squares.SpawnPlayerCircle();
+
+                squares.SpawnEnemyCircle();
+                squares.SpawnEnemyCircle();
+            }
+
+            this.game = gamesettings;
+
 
         }
 
@@ -69,7 +88,7 @@ namespace CatchTheSquare
 
                 if (Keyboard.IsKeyPressed(Keyboard.Key.R) == true)
                 {
-                    Reset();
+                    Reset(game);
                 }
             }
 
@@ -79,7 +98,9 @@ namespace CatchTheSquare
 
                 if (squares.SquareHasRemoved == true)
                 {
-                    if (squares.RemovedSquare != null) squares.SpawnPlayerSquare();
+                    if (squares.RemovedSquare is PlayerSquare) squares.SpawnPlayerSquare();
+
+                    if (squares.RemovedSquare is PlayerCircle) squares.SpawnPlayerCircle();
 
                 }
             }

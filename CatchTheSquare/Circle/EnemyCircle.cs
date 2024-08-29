@@ -1,34 +1,39 @@
 ﻿using System;
-using SFML.Graphics;
-using SFML.System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SFML.Graphics;
+using SFML.System;
 
 namespace CatchTheSquare
 {
-    public class PlayerCircle : Square
+    class EnemyCircle : Square
     {
-        private static Color Color = new Color(50, 50, 50);
-        private static float SizeStep = 10f;
-        private static float MinSize = 30f;
+        private static Color Color = new Color(230, 50, 50);
+        private static float MaxMovementSpeed = 3;
+        private static float MovementStep = 0.05f;
+        private static float MaxSize = 150;
+        private static float SizeStep = 10;
 
-        public PlayerCircle(Vector2f position, float movementSpeed, IntRect movemetBounds) : base (position, movementSpeed, movemetBounds)
+        public EnemyCircle(Vector2f position, float movementSpeed, IntRect movemetBounds) : base(position, movementSpeed, movemetBounds)
         {
             shapeCircle = new CircleShape(Mathf.defaultRadius);
             shapeCircle.Position = position;
 
             shapeCircle.FillColor = Color;
         }
+
         public override void Move()
         {
             shapeCircle.Position = Mathf.MoveTowards(shapeCircle.Position, movementTarget, movementSpeed);
 
             if (shapeCircle.Position == movementTarget)
-            {    
+            {
+                OnReachedTarget();
                 UpdateMovementTarget();
             }
+
         }
 
         public override void Draw(RenderWindow win)
@@ -42,24 +47,20 @@ namespace CatchTheSquare
         {
             if (IsActive == false) return;
 
-            if (Math.Pow((mousePos.X - (shapeCircle.Position.X + shapeCircle.Radius)), 2) + 
+            if (Math.Pow((mousePos.X - (shapeCircle.Position.X + shapeCircle.Radius)), 2) +
                 Math.Pow((mousePos.Y - (shapeCircle.Position.Y + shapeCircle.Radius)), 2) <= shapeCircle.Radius * shapeCircle.Radius) OnClick();
         }
 
         protected override void OnClick()
         {
-            Game.Scores++;
+            Game.IsLost = true;
+        }
 
-            shapeCircle.Radius -= SizeStep;
+        protected override void OnReachedTarget()
+        {
+            if (movementSpeed < MaxMovementSpeed) movementSpeed += MovementStep;
 
-            if (shapeCircle.Radius < MinSize)
-            {
-                IsActive = false;
-                return;
-            }
-
-            UpdateMovementTarget();
-            shapeCircle.Position = movementTarget;
+            if (shapeCircle.Radius < MaxSize) shapeCircle.Radius += SizeStep;
         }
 
     }

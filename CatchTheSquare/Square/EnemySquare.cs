@@ -19,8 +19,38 @@ namespace CatchTheSquare
 
         public EnemySquare(Vector2f position, float movementSpeed, IntRect movemetBounds) : base(position, movementSpeed, movemetBounds)
         {
+            shape = new RectangleShape(Mathf.defaultSize);
+            shape.Position = position;
+
             shape.FillColor = Color;
 
+        }
+        public override void Move()
+        {
+            shape.Position = Mathf.MoveTowards(shape.Position, movementTarget, movementSpeed);
+
+            if (shape.Position == movementTarget)
+            {
+                OnReachedTarget();
+                UpdateMovementTarget();
+            }
+
+        }
+
+        public override void Draw(RenderWindow win)
+        {
+            base.Draw(win);
+
+            win.Draw(shape);
+
+        }
+
+        public override void CheckMousePosition(Vector2i mousePos)
+        {
+            base.CheckMousePosition(mousePos);
+
+            if (mousePos.X > shape.Position.X && mousePos.X < shape.Position.X + shape.Size.X
+                && mousePos.Y > shape.Position.Y && mousePos.Y < shape.Position.Y + shape.Size.Y) OnClick();
         }
 
         protected override void OnClick()

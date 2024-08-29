@@ -27,7 +27,7 @@ namespace CatchTheSquare
                 win.Display();
             }
 
-            Game game = new Game();
+            Game game = new Game(menu.gameSetting);
                         
             while (win.IsOpen == true)
             {

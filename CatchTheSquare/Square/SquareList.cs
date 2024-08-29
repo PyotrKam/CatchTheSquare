@@ -74,5 +74,11 @@ namespace CatchTheSquare
             squares.Add(new PlayerCircle(new Vector2f(Mathf.Random.Next(0, 800), (Mathf.Random.Next(0, 600))), 5, new IntRect(0, 0, 800, 600)));
         }
 
+        public void SpawnEnemyCircle()
+        {
+            squares.Add(new EnemySquare(new Vector2f(Mathf.Random.Next(0, 800), (Mathf.Random.Next(0, 600))), 5, new IntRect(0, 0, 800, 600)));
+        }
+
+
     }
 }
