@@ -46,7 +46,7 @@ namespace CatchTheSquare
             win.Draw(menuText);
             //----------
             menuText.CharacterSize = 22;
-            menuText.Color = Color.Red;
+            menuText.Color = Color.Green;
             menuText.DisplayedString = "S - selecting Sprites";
             menuText.Position = new Vector2f(300, 300);
             win.Draw(menuText);

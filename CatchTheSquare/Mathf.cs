@@ -11,6 +11,10 @@ namespace CatchTheSquare
     {
         public static Random Random = new Random();
 
+        public static float defaultRadius = 60;
+        public static Vector2f defaultSize = new Vector2f(100, 100);
+
+
         public static Vector2f MoveTowards(Vector2f current, Vector2f target, float maxDistnceDelta) 
         {
             Vector2f dir = target - current;

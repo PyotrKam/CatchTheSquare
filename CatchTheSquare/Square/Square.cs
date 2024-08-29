@@ -11,6 +11,9 @@ namespace CatchTheSquare
         public bool IsActive = true;
 
         protected RectangleShape shape;
+        protected CircleShape shapeCircle;
+        protected Sprite shapeSprite;
+
         protected float movementSpeed;
         protected Vector2f movementTarget;
         protected IntRect movementBounds;
@@ -27,7 +30,7 @@ namespace CatchTheSquare
         
         }
 
-        public void Move()
+        public virtual void Move()
         {
             shape.Position = Mathf.MoveTowards(shape.Position, movementTarget, movementSpeed);
 
@@ -41,7 +44,7 @@ namespace CatchTheSquare
 
         }
 
-        public void Draw(RenderWindow win) 
+        public virtual void Draw(RenderWindow win) 
         {
             if (IsActive == false) return;
 
@@ -50,7 +53,7 @@ namespace CatchTheSquare
         }
 
 
-        public void CheckMousePosition(Vector2i mousePos) 
+        public virtual void CheckMousePosition(Vector2i mousePos) 
         {
             if (IsActive == false) return;
 
