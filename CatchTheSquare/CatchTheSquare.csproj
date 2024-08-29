@@ -65,6 +65,8 @@
     <Compile Include="Menu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sprite\EnemySprite.cs" />
+    <Compile Include="Sprite\PlayerSprite.cs" />
     <Compile Include="Square\EnemySquare.cs" />
     <Compile Include="Square\PlayerSquare.cs" />
     <Compile Include="Square\Square.cs" />
