@@ -9,16 +9,17 @@ namespace CatchTheSquare
         public static Vector2f DefaultSize = new Vector2f(100, 100);
 
         public bool IsActive = true;
+        public bool bonusActive = false;
 
-        protected RectangleShape shape;
-        protected CircleShape shapeCircle;
+        public RectangleShape shape;
+        public CircleShape shapeCircle;
         protected Sprite shapeSprite;
 
         protected float movementSpeed;
         protected Vector2f movementTarget;
         protected IntRect movementBounds;
 
-        public Square(Vector2f position, float movementSpeed, IntRect movemetBounds) 
+        public Square(float movementSpeed, IntRect movemetBounds) 
         {    
             this.movementSpeed = movementSpeed;
             this.movementBounds = movemetBounds;

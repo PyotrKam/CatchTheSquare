@@ -1,6 +1,7 @@
 ﻿using SFML.Graphics;
 using SFML.Window;
 using SFML.System;
+using System.Timers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,9 @@ namespace CatchTheSquare
 
         private int game;
 
+        private static Timer timer;
+        public static int bonusSpawnTime = 10;
+
         public Game(int gamesettings) 
         {
             mainFont = new Font("comic.ttf");
@@ -44,6 +48,22 @@ namespace CatchTheSquare
 
 
             Reset(gamesettings);
+        }
+
+        
+
+        static void SetTimer() 
+        {
+            timer = new Timer(1000);
+            timer.AutoReset = true;
+            timer.Enabled = true;
+            timer.Start();
+            timer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+        
+        }
+        static void OnTimedEvent(object soruce, ElapsedEventArgs e)
+        {
+            bonusSpawnTime -= 1;
         }
 
         private void Reset(int gamesettings) 
@@ -70,13 +90,35 @@ namespace CatchTheSquare
                 squares.SpawnEnemyCircle();
             }
 
-            this.game = gamesettings;
+            if (gamesettings == 3)
+            {
+                squares.SpawnPlayerSprite();
+                squares.SpawnPlayerSprite();
 
+                squares.SpawnEnemySprite();
+                squares.SpawnEnemySprite();
+            }
+
+
+            this.game = gamesettings;
+            SetTimer();
 
         }
 
         public void Update(RenderWindow win) 
         {
+            if (bonusSpawnTime < 0 && game == 1)
+            {
+                squares.SpawnBonusSquare();
+                bonusSpawnTime = 10;
+            }
+
+            if (bonusSpawnTime < 0 && game == 2)
+            {
+                squares.SpawnBonusCircle();
+                bonusSpawnTime = 10;
+            }
+
             if (IsLost == true)
             {
                 win.Draw(loseText);
@@ -102,8 +144,15 @@ namespace CatchTheSquare
 
                     if (squares.RemovedSquare is PlayerCircle) squares.SpawnPlayerCircle();
 
+                    if (squares.RemovedSquare is PlayerSprite) squares.SpawnPlayerSprite();
+
+                    if (squares.RemovedSquare is BonusCircle) squares.SpawnBonusCircle();
+
+                    if (squares.RemovedSquare is BonusSquare) squares.SpawnBonusSquare();
+
                 }
             }
+
 
             scoreText.DisplayedString = "Score: " + Scores.ToString() + "\nMax: " + MaxScores.ToString(); 
             win.Draw(scoreText);

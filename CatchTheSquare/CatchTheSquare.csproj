@@ -58,6 +58,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bonus\BonusCircle.cs" />
+    <Compile Include="Bonus\BonusSquare.cs" />
     <Compile Include="Circle\EnemyCircle.cs" />
     <Compile Include="Circle\PlayerCircle.cs" />
     <Compile Include="Game.cs" />

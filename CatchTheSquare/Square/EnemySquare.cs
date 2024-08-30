@@ -17,7 +17,7 @@ namespace CatchTheSquare
         private static float MaxSize = 150;
         private static float SizeStep = 10;
 
-        public EnemySquare(Vector2f position, float movementSpeed, IntRect movemetBounds) : base(position, movementSpeed, movemetBounds)
+        public EnemySquare(Vector2f position, float movementSpeed, IntRect movemetBounds) : base(movementSpeed, movemetBounds)
         {
             shape = new RectangleShape(Mathf.defaultSize);
             shape.Position = position;

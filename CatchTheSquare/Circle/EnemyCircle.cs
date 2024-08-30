@@ -14,9 +14,9 @@ namespace CatchTheSquare
         private static float MaxMovementSpeed = 3;
         private static float MovementStep = 0.05f;
         private static float MaxSize = 150;
-        private static float SizeStep = 10;
+        private static float SizeStep = 5;
 
-        public EnemyCircle(Vector2f position, float movementSpeed, IntRect movemetBounds) : base(position, movementSpeed, movemetBounds)
+        public EnemyCircle(Vector2f position, float movementSpeed, IntRect movemetBounds) : base(movementSpeed, movemetBounds)
         {
             shapeCircle = new CircleShape(Mathf.defaultRadius);
             shapeCircle.Position = position;
@@ -33,19 +33,17 @@ namespace CatchTheSquare
                 OnReachedTarget();
                 UpdateMovementTarget();
             }
-
         }
-
         public override void Draw(RenderWindow win)
         {
-            if (IsActive == false) return;
+            base.Draw(win);
 
             win.Draw(shapeCircle);
         }
 
         public override void CheckMousePosition(Vector2i mousePos)
         {
-            if (IsActive == false) return;
+            base.CheckMousePosition(mousePos);
 
             if (Math.Pow((mousePos.X - (shapeCircle.Position.X + shapeCircle.Radius)), 2) +
                 Math.Pow((mousePos.Y - (shapeCircle.Position.Y + shapeCircle.Radius)), 2) <= shapeCircle.Radius * shapeCircle.Radius) OnClick();

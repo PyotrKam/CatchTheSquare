@@ -11,10 +11,11 @@ namespace CatchTheSquare
     public class PlayerSprite : Square
     {
         static Texture PlayerTexture;
-        private static float SizeStep = 10f;
-        private static float MinSize = 30f;
+        
+        private static float SizeStep = 0.1f;
+        private static float MinSize = 0.5f;
 
-        public PlayerSprite(Vector2f position, float movementSpeed, IntRect movemetBounds) : base (position, movementSpeed, movemetBounds)
+        public PlayerSprite(Vector2f position, float movementSpeed, IntRect movemetBounds) : base (movementSpeed, movemetBounds)
         {
             PlayerTexture = new Texture("smile.png");
             shapeSprite = new Sprite(PlayerTexture);
@@ -22,7 +23,7 @@ namespace CatchTheSquare
         }
         public override void Move()
         {
-            shapeSprite.Position = Mathf.MoveTowards(shapeCircle.Position, movementTarget, movementSpeed);
+            shapeSprite.Position = Mathf.MoveTowards(shapeSprite.Position, movementTarget, movementSpeed);
 
             if (shapeSprite.Position == movementTarget)
             {    
@@ -51,7 +52,7 @@ namespace CatchTheSquare
         {
             Game.Scores++;
 
-            shapeSprite.Scale -= new Vector2f(SizeStep, SizeStep); ;
+            shapeSprite.Scale -= new Vector2f(SizeStep, SizeStep); 
 
             if (shapeSprite.Scale.X < MinSize)
             {

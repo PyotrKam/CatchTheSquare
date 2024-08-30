@@ -27,7 +27,6 @@ namespace CatchTheSquare
             RemovedSquare = null;
 
             squares.Clear();
-
         }
 
         public void Update(RenderWindow win) 
@@ -40,9 +39,7 @@ namespace CatchTheSquare
                 for (int i = 0; i < squares.Count; i++)
                 {
                     squares[i].CheckMousePosition(Mouse.GetPosition(win));
-
                 }
-
             }
 
             for (int i = 0; i < squares.Count; i++)
@@ -56,9 +53,34 @@ namespace CatchTheSquare
                     squares.Remove(squares[i]);
                     SquareHasRemoved = true;
                 }
-
             }
         }
+
+        public void SquareBlueBonus() 
+        {
+            for (int i = 0; i < squares.Count; i++)
+            {
+                if (squares[i] is EnemySquare && RemovedSquare.bonusActive == true)
+                {
+                    squares[i].shape.Size = Mathf.defaultSize;
+                }
+            }
+        }
+
+        public void CircleYellowBonus()
+        {
+            for (int i = 0; i < squares.Count; i++)
+            {
+                if (squares[i] is PlayerCircle && RemovedSquare.bonusActive == true)
+                {
+                    squares[i].shapeCircle.Radius = Mathf.defaultRadius;
+                }
+            }
+        }
+
+
+    
+
 
         public void SpawnPlayerSquare() 
         {
@@ -76,9 +98,28 @@ namespace CatchTheSquare
 
         public void SpawnEnemyCircle()
         {
-            squares.Add(new EnemySquare(new Vector2f(Mathf.Random.Next(0, 800), (Mathf.Random.Next(0, 600))), 5, new IntRect(0, 0, 800, 600)));
+            squares.Add(new EnemyCircle(new Vector2f(Mathf.Random.Next(0, 800), (Mathf.Random.Next(0, 600))), 5, new IntRect(0, 0, 800, 600)));
         }
 
+        public void SpawnPlayerSprite()
+        {
+            squares.Add(new PlayerSprite(new Vector2f(Mathf.Random.Next(0, 800), (Mathf.Random.Next(0, 600))), 5, new IntRect(0, 0, 800, 600)));
+        }
+
+        public void SpawnEnemySprite()
+        {
+            squares.Add(new EnemySprite(new Vector2f(Mathf.Random.Next(0, 800), (Mathf.Random.Next(0, 600))), 5, new IntRect(0, 0, 800, 600)));
+        }
+
+        public void SpawnBonusSquare()
+        {
+            squares.Add(new BonusSquare(new Vector2f(Mathf.Random.Next(0, 800), (Mathf.Random.Next(0, 600))), 5, new IntRect(0, 0, 800, 600)));
+        }
+
+        public void SpawnBonusCircle()
+        {
+            squares.Add(new BonusCircle(new Vector2f(Mathf.Random.Next(0, 800), (Mathf.Random.Next(0, 600))), 5, new IntRect(0, 0, 800, 600)));
+        }
 
     }
 }

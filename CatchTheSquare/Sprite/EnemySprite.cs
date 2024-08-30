@@ -13,11 +13,11 @@ namespace CatchTheSquare
         static Texture EnemyTexture;
                 
         private static float MaxMovementSpeed = 3;
-        private static float MovementStep = 0.05f;
-        private static float maxSpriteSize = 150;
-        private static float spriteSizeStep = 1f;
+        private static float MovementStep = 0.1f;
+        private static float maxSpriteSize = 2;
+        private static float spriteSizeStep = 0.5f;
 
-        public EnemySprite(Vector2f position, float movementSpeed, IntRect movemetBounds) : base(position, movementSpeed, movemetBounds)
+        public EnemySprite(Vector2f position, float movementSpeed, IntRect movemetBounds) : base(movementSpeed, movemetBounds)
         {
             EnemyTexture = new Texture("pirate.png");
             shapeSprite = new Sprite(EnemyTexture);
@@ -44,8 +44,10 @@ namespace CatchTheSquare
         {
             base.CheckMousePosition(mousePos);
 
-            if (mousePos.X > shape.Position.X && mousePos.X < shape.Position.X + shape.Size.X
-                && mousePos.Y > shape.Position.Y && mousePos.Y < shape.Position.Y + shape.Size.Y) OnClick();
+            if (mousePos.X > shapeSprite.Position.X && mousePos.X < shapeSprite.Position.X + shapeSprite.Texture.Size.X
+                && mousePos.Y > shapeSprite.Position.Y && mousePos.Y < shapeSprite.Position.Y + shapeSprite.Texture.Size.Y) OnClick();
+
+            
         }
 
         protected override void OnClick()

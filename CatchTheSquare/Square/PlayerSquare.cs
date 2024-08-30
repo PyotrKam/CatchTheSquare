@@ -14,7 +14,7 @@ namespace CatchTheSquare
         private static float SizeStep = 10;
         private static float MinSize = 30;
 
-        public PlayerSquare(Vector2f position, float movementSpeed, IntRect movemetBounds) : base (position, movementSpeed, movemetBounds)
+        public PlayerSquare(Vector2f position, float movementSpeed, IntRect movemetBounds) : base (movementSpeed, movemetBounds)
         {
             shape = new RectangleShape(Mathf.defaultSize);
             shape.Position = position;

@@ -14,7 +14,7 @@ namespace CatchTheSquare
         private static float SizeStep = 10f;
         private static float MinSize = 30f;
 
-        public PlayerCircle(Vector2f position, float movementSpeed, IntRect movemetBounds) : base (position, movementSpeed, movemetBounds)
+        public PlayerCircle(Vector2f position, float movementSpeed, IntRect movemetBounds) : base (movementSpeed, movemetBounds)
         {
             shapeCircle = new CircleShape(Mathf.defaultRadius);
             shapeCircle.Position = position;
