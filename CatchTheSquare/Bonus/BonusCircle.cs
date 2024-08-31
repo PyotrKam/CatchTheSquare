@@ -61,11 +61,10 @@ namespace CatchTheSquare
 
         protected override void OnReachedTarget()
         {
-            if (movementSpeed < maxMovementSpeed)
-                movementSpeed += movementStep;
+            if (movementSpeed < maxMovementSpeed) movementSpeed += movementStep;
 
-            if (shapeCircle.Radius > minCircleSize)
-                shapeCircle.Radius -= sizeStep;
+            if (shapeCircle.Radius > minCircleSize) shapeCircle.Radius -= sizeStep;
+
 
             if (shapeCircle.Radius == minCircleSize)
             {

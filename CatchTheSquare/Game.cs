@@ -146,9 +146,9 @@ namespace CatchTheSquare
 
                     if (squares.RemovedSquare is PlayerSprite) squares.SpawnPlayerSprite();
 
-                    if (squares.RemovedSquare is BonusCircle) squares.SpawnBonusCircle();
+                    if (squares.RemovedSquare is BonusCircle) squares.SquareBlueBonus();
 
-                    if (squares.RemovedSquare is BonusSquare) squares.SpawnBonusSquare();
+                    if (squares.RemovedSquare is BonusSquare) squares.CircleYellowBonus();
 
                 }
             }

@@ -26,10 +26,8 @@ namespace CatchTheSquare
 
             UpdateMovementTarget();        
         }
-        public virtual void Move()
-        {
-            
-        }
+        public virtual void Move() { }
+       
 
         public virtual void Draw(RenderWindow win) 
         {

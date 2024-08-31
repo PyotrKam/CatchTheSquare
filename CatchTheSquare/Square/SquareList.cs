@@ -11,7 +11,7 @@ namespace CatchTheSquare
 {
     class SquareList
     {
-        private List<Square> squares;
+        private List<Square> squares = new List<Square>();
         public bool SquareHasRemoved;
         public Square RemovedSquare;
 
@@ -27,6 +27,30 @@ namespace CatchTheSquare
             RemovedSquare = null;
 
             squares.Clear();
+        }
+
+        public void SquareBlueBonus()
+        {
+            for (int i = 0; i < squares.Count; i++)
+            {
+                if (squares[i] is EnemySquare && RemovedSquare.bonusActive == true)
+                {
+                    squares[i].shape.Size = Mathf.defaultSize;
+                }
+            }
+
+
+        }
+
+        public void CircleYellowBonus()
+        {
+            for (int i = 0; i < squares.Count; i++)
+            {
+                if (squares[i] is EnemyCircle && RemovedSquare.bonusActive == true)
+                {
+                    squares[i].shapeCircle.Radius = Mathf.defaultRadius;
+                }
+            }
         }
 
         public void Update(RenderWindow win) 
@@ -56,27 +80,7 @@ namespace CatchTheSquare
             }
         }
 
-        public void SquareBlueBonus() 
-        {
-            for (int i = 0; i < squares.Count; i++)
-            {
-                if (squares[i] is EnemySquare && RemovedSquare.bonusActive == true)
-                {
-                    squares[i].shape.Size = Mathf.defaultSize;
-                }
-            }
-        }
-
-        public void CircleYellowBonus()
-        {
-            for (int i = 0; i < squares.Count; i++)
-            {
-                if (squares[i] is PlayerCircle && RemovedSquare.bonusActive == true)
-                {
-                    squares[i].shapeCircle.Radius = Mathf.defaultRadius;
-                }
-            }
-        }
+        
 
 
     
